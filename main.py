@@ -52,8 +52,13 @@ class StudyMate(QMainWindow):
                 checkBox = QCheckBox(frame)
                 checkBox.setGeometry(QRect(10, 40 + i*30 , 95, 23))
                 checkBox.setText(chapter)
-
+                checkBox.stateChanged.connect(lambda state, subject=subject, frame=frame: self.update_progress(subject, frame))
         self.show()
+
+    def update_progress(self, subject, frame):
+        checked_chapters = [checkBox.text() for checkBox in frame.findChildren(QCheckBox) if checkBox.isChecked()]
+        progressBar = self.progress_bars[subject]
+        progressBar.setValue(len(checked_chapters))
 
 
 if __name__ == '__main__':
