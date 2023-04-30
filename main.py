@@ -1,6 +1,7 @@
 from PyQt5.QtWidgets import *
 from PyQt5 import uic
-from PyQt5.QtCore import QRect,Qt
+from PyQt5.QtCore import QRect
+from PyQt5.QtGui import QFont
 
 import csv
 
@@ -28,11 +29,13 @@ class StudyMate(QMainWindow):
 
         for subject,chapters in self.subject_chapters.items():
             label = QLabel(self.progressFrame)
-            label.setGeometry(QRect(10,y,92,23))
+            label.setFont(QFont("Arial", 10))
+            label.setMinimumWidth(200)
+            label.setGeometry(QRect(10,y,200,23))
             label.setObjectName(f"label_{subject}")
             label.setText(subject)
             progressBar = QProgressBar(self.progressFrame)
-            progressBar.setGeometry((QRect(120, y, 118, 23)))
+            progressBar.setGeometry((QRect(180, y, 118, 23)))
             progressBar.setObjectName(f"progressBar_{subject}")
             progressBar.setMinimum(0)
             progressBar.setMaximum(len(chapters))
@@ -42,7 +45,8 @@ class StudyMate(QMainWindow):
         y = 40 
         for subject,chapters in self.subject_chapters.items():
             label = QLabel(self.centralWidget)
-            label.setGeometry(QRect(30, y, 67, 17))
+            label.setMinimumWidth(200)
+            label.setGeometry(QRect(30, y, 200, 17))
             label.setText(subject)
             frame = QFrame(self.centralWidget)
             frame.setGeometry(QRect(30, y+30, 151, 221))
