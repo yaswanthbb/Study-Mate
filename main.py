@@ -42,17 +42,18 @@ class StudyMate(QMainWindow):
             y += 40
             self.progress_bars[subject] = progressBar
 
-        y = 40 
-        for subject,chapters in self.subject_chapters.items():
+        x = 30
+        y = 100
+        for subject, chapters in self.subject_chapters.items():
             label = QLabel(self.centralWidget)
             label.setMinimumWidth(200)
-            label.setGeometry(QRect(30, y, 200, 17))
+            label.setGeometry(QRect(x, y, 200, 17))
             label.setText(subject)
             frame = QFrame(self.centralWidget)
-            frame.setGeometry(QRect(30, y+30, 151, 221))
+            frame.setGeometry(QRect(x, y+30, 151, 221))
             frame.setFrameShape(QFrame.StyledPanel)
             frame.setFrameShadow(QFrame.Raised)
-            y += 260
+            x += 230
             for i, chapter in enumerate(chapters):
                 checkBox = QCheckBox(frame)
                 checkBox.setGeometry(QRect(10, 40 + i*30 , 95, 23))
