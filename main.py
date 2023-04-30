@@ -7,8 +7,11 @@ import csv
 class StudyMate(QMainWindow):
     def __init__(self):
         super(StudyMate,self).__init__()
-        uic.loadUi("Study-Mate/gui.ui",self)
+        uic.loadUi("gui.ui",self)
         
+        with open('data.csv','r') as file:
+            data = csv.DictReader(file)
+
         self.show()
 if __name__ == '__main__':
     app = QApplication([])
