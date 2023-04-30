@@ -26,7 +26,7 @@ class StudyMate(QMainWindow):
 
         y = 40
 
-        for subject,chapter in self.subject_chapters.items():
+        for subject,chapters in self.subject_chapters.items():
             label = QLabel(self.progressFrame)
             label.setGeometry(QRect(10,y,92,23))
             label.setObjectName(f"label_{subject}")
@@ -34,7 +34,8 @@ class StudyMate(QMainWindow):
             progressBar = QProgressBar(self.progressFrame)
             progressBar.setGeometry((QRect(120, y, 118, 23)))
             progressBar.setObjectName(f"progressBar_{subject}")
-
+            progressBar.setMinimum(0)
+            progressBar.setMaximum(len(chapters))
             y += 40
             self.progress_bars[subject] = progressBar
 
