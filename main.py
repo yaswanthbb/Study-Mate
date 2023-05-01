@@ -76,14 +76,15 @@ class StudyMate(QMainWindow):
         for subject, exam_dates in self.exam_names.items():
             for exam_date in exam_dates:
                 checkBox = QCheckBox(self.examFrame)
-                checkBox.setGeometry((QRect(x, y, 23, 23)))
+                checkBox.setGeometry(QRect(x + 100, y, 23, 23))  # move checkBox to the right of label_date
                 label_date = QLabel(self.examFrame)
-                label_date.setGeometry(QRect(x + 25, y, 100, 23))
+                label_date.setGeometry(QRect(x, y, 100, 23))
                 label_date.setText(exam_date)
                 label_exam = QLabel(self.examFrame)
-                label_exam.setGeometry(QRect(x + 130, y, 200, 23))
+                label_exam.setGeometry(QRect(x + 130, y, 200, 23))  # move label_exam to the right of checkBox
                 label_exam.setText(subject)
                 y += 40
+
 
         self.show()
 
