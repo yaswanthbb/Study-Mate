@@ -71,24 +71,19 @@ class StudyMate(QMainWindow):
                 checkBox.setGeometry(QRect(10, 40 + i*30 , 95, 23))
                 checkBox.setText(chapter)
                 checkBox.stateChanged.connect(lambda state, subject=subject, frame=frame: self.update_progress(subject, frame))
-        x = 250
+        x = 30
         y = 40
         for subject, exam_dates in self.exam_names.items():
-            label = QLabel(self.examFrame)
-            label.setFont(QFont("Arial", 10))
-            label.setMinimumWidth(200)
-            label.setGeometry(QRect(10,y,200,23))
-            label.setText(subject)
             for exam_date in exam_dates:
-                label = QLabel(self.examFrame)
-                label.setGeometry(QRect(x, y, 200, 23))
-                label.setText(exam_date)
                 checkBox = QCheckBox(self.examFrame)
-                checkBox.setGeometry((QRect(x + 180, y, 118, 23)))
+                checkBox.setGeometry((QRect(x, y, 23, 23)))
+                label_date = QLabel(self.examFrame)
+                label_date.setGeometry(QRect(x + 25, y, 100, 23))
+                label_date.setText(exam_date)
+                label_exam = QLabel(self.examFrame)
+                label_exam.setGeometry(QRect(x + 130, y, 200, 23))
+                label_exam.setText(subject)
                 y += 40
-        x += 400
-        y = 40
-
 
         self.show()
 
