@@ -23,6 +23,18 @@ class StudyMate(QMainWindow):
                 else:
                     self.subject_chapters[subject] = [chapter]
         
+        with open('exam_dates.csv','r') as file:
+             exam_data = csv.DictReader(file)
+             self.exam_names = {}
+             for row in exam_data:
+                 date = row['Exam Date']
+                 subject = row['Subject']
+                 if subject in self.exam_names:
+                     self.exam_names[subject].append(date)
+                 else:
+                     self.exam_names[subject] = [date]
+
+
         self.progress_bars = {}
 
         y = 40
@@ -59,6 +71,25 @@ class StudyMate(QMainWindow):
                 checkBox.setGeometry(QRect(10, 40 + i*30 , 95, 23))
                 checkBox.setText(chapter)
                 checkBox.stateChanged.connect(lambda state, subject=subject, frame=frame: self.update_progress(subject, frame))
+        x = 250
+        y = 40
+        for subject, exam_dates in self.exam_names.items():
+            label = QLabel(self.examFrame)
+            label.setFont(QFont("Arial", 10))
+            label.setMinimumWidth(200)
+            label.setGeometry(QRect(10,y,200,23))
+            label.setText(subject)
+            for exam_date in exam_dates:
+                label = QLabel(self.examFrame)
+                label.setGeometry(QRect(x, y, 200, 23))
+                label.setText(exam_date)
+                checkBox = QCheckBox(self.examFrame)
+                checkBox.setGeometry((QRect(x + 180, y, 118, 23)))
+                y += 40
+        x += 400
+        y = 40
+
+
         self.show()
 
     def update_progress(self, subject, frame):
